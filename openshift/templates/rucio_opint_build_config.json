@@ -1,0 +1,46 @@
+{
+  "kind": "BuildConfig",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "rucio-opint-backend"
+  },
+  "spec": {
+    "source":
+      {
+        "type": "Git",
+        "git": {
+          "uri": "https://github.com/maany/rucio-opint-backend-django",
+          "ref": "production"
+        }
+      },
+    "strategy": {
+      "type": "Source",
+      "sourceStrategy": {
+        "from": {
+          "kind": "ImageStreamTag",
+          "name": "python:3.6"
+        }
+      }
+    },
+    "output":{
+      "to": {
+        "kind": "ImageStreamTag",
+        "name": "rucio-opint-backend:latest"
+      }
+    },
+    "triggers": [
+      {
+        "type": "ImageChange"
+      },
+      {
+        "type": "ConfigChange"
+      },
+      {
+        "type": "GitHub",
+        "github": {
+          "secret": "aaSJkhfdosNnks"
+        }
+      }
+    ]
+  }
+}

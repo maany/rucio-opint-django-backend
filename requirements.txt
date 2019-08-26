@@ -1,0 +1,12 @@
+django==2.1.2
+djangorestframework
+django-model-utils
+requests
+flake8
+drf-url-filters
+six
+django-cors-headers
+mysqlclient
+psycopg2-binary==2.8.3
+gunicorn
+whitenoise

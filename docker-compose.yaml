@@ -1,0 +1,25 @@
+version: '3.7'
+
+services:
+  db:
+    image: postgres
+    restart: always
+    volumes:
+      - postgres_data_opint:/var/lib/postgresql/data
+    env_file: .env.db
+
+  backend:
+    build: ./
+    command: "/usr/src/app/init.sh"
+    volumes:
+      - .:/usr/src/app
+      - .:/code
+    env_file: .env
+    privileged: true
+    ports:
+      - "8000:8000"
+    # restart: always
+    depends_on:
+      - db
+volumes:
+  postgres_data_opint:
